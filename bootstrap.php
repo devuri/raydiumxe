@@ -2,16 +2,18 @@
 
 use WPframework\Component\Kernel;
 
-if (file_exists(\dirname(__FILE__) . "/vendor/autoload.php")) {
-    require_once \dirname(__FILE__) . "/vendor/autoload.php";
+if ( file_exists( \dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+    require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
 } else {
-    exit("Can't find the vendor autoload file.");
+    exit( 'Cant find the vendor autoload file.' );
 }
 
-$raydium_http = http_component_kernel(__DIR__);
+define( 'RAYDIUM_ENVIRONMENT_TYPE', null );
 
-$raydium_http->overrides();
+$raydium_http_app = http_component_kernel( __DIR__ );
 
-$raydium_http->init();
+$raydium_http_app->overrides();
 
-$table_prefix = env("DB_PREFIX");
+$raydium_http_app->init( RAYDIUM_ENVIRONMENT_TYPE );
+
+$table_prefix = env( 'DB_PREFIX' );
