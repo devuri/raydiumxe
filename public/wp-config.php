@@ -1,5 +1,8 @@
 <?php
 
+
+/* That's all, stop editing! Happy publishing. */
+
 if ( file_exists(__DIR__ . '/../bootstrap.php') ) {
 	require_once __DIR__ . '/../bootstrap.php';
 }
