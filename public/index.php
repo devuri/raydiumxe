@@ -13,10 +13,15 @@ define( 'HYBRIDX', false );
 /**
  * Bootstrap the application.
  */
-if ( defined( 'HYBRIDX' ) && true === constant( 'HYBRIDX' ) ) {
-    require __DIR__ . '/wp-config.php';
-} elseif ( file_exists( __DIR__ . '/wp/wp-blog-header.php' ) ) {
+if (\defined('HYBRIDX') && true === \constant('HYBRIDX')) {
+    $initializationConfigPath = __DIR__ . '/wp-config.php';
+    if (file_exists($initializationConfigPath)) {
+        require $initializationConfigPath;
+    } else {
+        exit("Error: initialization file wp-config.php not found. Please check your configuration.");
+    }
+} elseif (file_exists(__DIR__ . '/wp/wp-blog-header.php')) {
     require __DIR__ . '/wp/wp-blog-header.php';
 } else {
-    exit( "Looks like the framework is not set up. Run setup or composer install." );
+    exit("Error: Framework setup incomplete. Run setup or 'composer install' to proceed.");
 }
